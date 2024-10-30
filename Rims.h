@@ -16,7 +16,7 @@ private:
 
     friend std::ostream &operator<<(std::ostream &output, const Rims &obj)
     {
-        output << std::setw(15) << "Tyres brand [" << obj.m_brand << "] size [" << obj.m_width << 'x' << obj.m_height << "radius " << obj.m_radius << "]\n";
+        output << std::setw(15) << "Wheels brand [" << obj.m_brand << "] size [" << obj.m_width << 'x' << obj.m_height << "radius " << obj.m_radius << "]\n";
 
         return output;
     }

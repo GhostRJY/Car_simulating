@@ -14,20 +14,23 @@ Auto::Auto()
 
     this->setRims("rims", 200, 60, 17);
 
+    this->setOdometer(1000.00);
+
     std::cout << "Auto constructed\n";
 }
 
 Auto::Auto(const std::string &brand,
            const std::string &model,
+           const double odometer,
            const std::string &motorMarking,
-           double motorVolume,
+           const double motorVolume,
            const std::string &gearBoxMarking,
            const unsigned short gearCount,
            const std::string &rimsMark,
            const std::string &tyreMark,
-           unsigned short width,
-           unsigned short height,
-           unsigned short radius)
+           const unsigned short width,
+           const unsigned short height,
+           const unsigned short radius)
 {
     // делегирую инициализацию полей класса
     this->setBrand(brand);
@@ -42,22 +45,33 @@ Auto::Auto(const std::string &brand,
 
     this->setRims(rimsMark, width, height, radius);
 
+    this->setOdometer(odometer);
+
     std::cout << "Auto constructed\n";
 }
 
 Auto::Auto(const Auto &other)
+    : m_brand{other.m_brand},
+      m_model{other.m_model},
+      m_odometer{other.m_odometer},
+      m_motor{other.m_motor},
+      m_gearbox{other.m_gearbox},
+      m_rims{other.m_rims},
+      m_tyres{other.m_tyres}
 {
-    this->setBrand(other.m_brand);
+    // this->setBrand(other.m_brand);
 
-    this->setModel(other.m_model);
+    // this->setModel(other.m_model);
 
-    this->setMotor(other.m_motor);
+    // this->setMotor(other.m_motor);
 
-    this->setGearbox(other.m_gearbox);
+    // this->setGearbox(other.m_gearbox);
 
-    this->setTyres(other.m_tyres);
+    // this->setTyres(other.m_tyres);
 
-    this->setRims(other.m_rims);
+    // this->setRims(other.m_rims);
+
+    // this->setOdometer(other.m_odometer);
 }
 
 Auto::~Auto()
@@ -107,6 +121,11 @@ Tyres Auto::getTyres() const
 Rims Auto::getRims() const
 {
     return this->m_rims;
+}
+
+double Auto::getOdometer() const
+{
+    return this->m_odometer;
 }
 
 void Auto::setBrand(const std::string &brand)
@@ -167,6 +186,19 @@ void Auto::setRims(const std::string &mark,
     this->m_rims = Rims(mark, width, height, radius);
 }
 
+void Auto::setOdometer(const double odometer)
+{
+    if (odometer >= 0)
+    {
+        this->m_odometer = odometer;
+    }
+    else
+    {
+        std::cout << "Invalid value odometer = 100 km\n";
+        this->m_odometer = 100.00;
+    }
+}
+
 void Auto::turnOn()
 {
     m_motor.startEngine();
@@ -199,7 +231,7 @@ void Auto::startMoving()
                 std::cout << "Auto start moving\n";
 
             m_rims.spinWheels();
-            Sleep(700);
+            Sleep(10);
         }
     }
     else
@@ -216,7 +248,7 @@ void Auto::stopMoving()
     {
         std::cout << "Auto slowing\n";
         gearDown();
-        Sleep(1000);
+        Sleep(10);
     }
 
     std::cout << "Auto is stopped\n";

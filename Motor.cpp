@@ -83,5 +83,11 @@ void Motor::setWork(const bool state)
 
 void Motor::setVolume(const double volume)
 {
-    this->m_volume = volume;
+    if (volume >= 0.0)
+        this->m_volume = volume;
+    else
+    {
+        std::cout << "Invalid value for motor volume using standard volume 0.6\n";
+        this->m_volume = 0.6;
+    }
 }
