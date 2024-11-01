@@ -101,7 +101,7 @@ public:
     void gearDown();
 
     // начать движение авто
-    void startMoving();
+    int startMoving(const double);
 
     // замедлятся
     void stopMoving();

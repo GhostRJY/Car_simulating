@@ -91,15 +91,15 @@ unsigned short Gearbox::getGearCount() const
 
 void Gearbox::shiftUp()
 {
-    if (m_gearPos <= m_gearCount)
+    if (m_gearPos < m_gearCount)
     {
         ++m_gearPos;
         std::cout << "Gearbox is in [" << m_currentGear[m_gearPos] << "] position\n";
     }
-    else
-    {
-        std::cout << "you can't shift up!!!" << '\n';
-    }
+    // else
+    // {
+    //     std::cout << "you can't shift up!!!" << '\n';
+    // }
 }
 
 void Gearbox::shiftDown()

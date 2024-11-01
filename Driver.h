@@ -12,10 +12,11 @@ private:
     Auto *m_ptrAuto;
     int m_experience;
     double m_energy;
+    bool m_inAuto{false};
 
 public:
     Driver();
-    Driver(const char *, const char *, Auto *, const int, const double);
+    Driver(const char *, const char *, Auto *&, const int, const double);
 
     // убираю конструктор копирования т.к. по логике у меня не может быть одинаковых водителей
     Driver(const Driver &) = delete;
@@ -24,7 +25,7 @@ public:
     // сеттеры
     void setFirstName(const char *);
     void setLastName(const char *);
-    void setAuto(Auto *);
+    void setAuto(Auto *&);
     void setExperience(const int);
     void setEnergy(const double);
     // геттеры
@@ -33,6 +34,20 @@ public:
     const Auto getAuto() const;
     int getExperience() const;
     double getEnergy() const;
+
+    // методы для водителя
+    // отдохнуть, чтоб обновить энергию
+    void goSleep();
+    // сесть в машину
+    void sitInCar();
+    // выйти из машины
+    void goOut();
+    // завести авто
+    void startEngine();
+    // начать поездку(сколько проехать)
+    bool startTrip(const int);
+    // окончить поездку
+    void finishTrip();
 };
 
 #endif

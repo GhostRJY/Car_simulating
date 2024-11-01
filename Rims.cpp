@@ -110,12 +110,13 @@ void Rims::setRadius(const unsigned short radius)
     }
 }
 
-void Rims::spinWheels()
+void Rims::spinWheels(bool maxSpeed)
 {
     std::cout << "Wheels spinning.\n";
-    for (int i{0}; i < 3; ++i)
-    {
-        std::cout << "faster\n";
-        Sleep(500);
-    }
+    if (maxSpeed)
+        for (int i{0}; i < 3; ++i)
+        {
+            std::cout << "faster\n";
+            // Sleep(10);
+        }
 }

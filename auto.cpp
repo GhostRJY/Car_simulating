@@ -219,25 +219,36 @@ void Auto::gearDown()
     m_gearbox.shiftDown();
 }
 
-void Auto::startMoving()
+int Auto::startMoving(const double driveKM)
 {
+    // пробег одной поездки нужен для водительского опыта
+    int kms{0};
     if (m_motor.getWork())
     {
-        while (m_gearbox.getGearPos() < m_gearbox.getGearCount())
+
+        while (kms <= driveKM)
         {
 
             gearUp();
             if (m_gearbox.getGearPos() == 2)
                 std::cout << "Auto start moving\n";
 
-            m_rims.spinWheels();
-            Sleep(10);
+            if (m_gearbox.getGearPos() == m_gearbox.getGearCount())
+                m_rims.spinWheels(false);
+            else
+                m_rims.spinWheels(true);
+
+            // увеличиваю пробег авто
+            m_odometer += 1.0;
+            ++kms;
         }
     }
     else
     {
         std::cout << "Your motor is off!!!\n";
     }
+
+    return kms;
 }
 
 void Auto::stopMoving()

@@ -54,7 +54,7 @@ public:
     void setRadius(const unsigned short);
 
     // состояния
-    void spinWheels();
+    void spinWheels(bool);
 };
 
 #endif
